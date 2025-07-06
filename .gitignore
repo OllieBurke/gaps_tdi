@@ -1,6 +1,7 @@
 # Specific directories
 /data_for_simulations
 /.DS_store
+/Plots
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
