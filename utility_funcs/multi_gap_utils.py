@@ -1,5 +1,6 @@
 import numpy as np
-from utility_funcs.gap_widening_utils import (
+
+from gap_widening_utils import (
     gap_augmentation_expression,
     widening_gap_X1,
     widening_gap_X2,
