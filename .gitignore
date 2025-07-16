@@ -1,3 +1,5 @@
+# Stop adding .h5 files
+*.h5
 # Specific directories
 /data_for_simulations
 /.DS_store
