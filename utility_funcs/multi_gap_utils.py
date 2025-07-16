@@ -46,7 +46,7 @@ def nans_blocks_function(object_w_nans):
         return np.array([], dtype=int)
     return np.split(nan_indices, np.where(np.diff(nan_indices) > 1)[0] + 1)
 
-def approx_total_nans_from_nan_blocks_eta(object_w_nans, lagrange_order=45, delay_number=1.0):
+def approx_total_nans_from_nan_blocks_eta(object_w_nans, delay, lagrange_order=45, delay_number=1.0):
     """
     Approximate the total number of NaNs in eta variables after gap widening.
 
@@ -58,7 +58,6 @@ def approx_total_nans_from_nan_blocks_eta(object_w_nans, lagrange_order=45, dela
     Returns:
         int: Total number of NaNs after widening.
     """
-    delay = 8.333333 / 0.25  # Compute the delay in samples
     nan_blocks = nans_blocks_function(object_w_nans)
     total_nans = 0
 
@@ -71,7 +70,7 @@ def approx_total_nans_from_nan_blocks_eta(object_w_nans, lagrange_order=45, dela
 
     return total_nans
 
-def approx_total_nans_from_nan_blocks_X(object_w_nans, lagrange_order=45, generation=2):
+def approx_total_nans_from_nan_blocks_X(object_w_nans, delay, order=45, generation=2):
     """
     Approximate the total number of NaNs in TDI X variables after gap widening.
 
@@ -83,21 +82,20 @@ def approx_total_nans_from_nan_blocks_X(object_w_nans, lagrange_order=45, genera
     Returns:
         int: Total number of NaNs after widening.
     """
-    delay = 8.333333 / 0.25  # Compute the delay in samples
     nan_blocks = nans_blocks_function(object_w_nans)
     total_nans = 0
 
     for block in nan_blocks:
         block_size = len(block)
         if generation == 1:
-            _, total_nans_block = widening_gap_X1(lagrange_order, block_size, delay)
+            _, total_nans_block = widening_gap_X1(order, block_size, delay)
         else:
-            _, total_nans_block = widening_gap_X2(lagrange_order, block_size, delay)
+            _, total_nans_block = widening_gap_X2(order, block_size, delay)
         total_nans += total_nans_block
 
     return int(total_nans)
 
-def compute_nan_indices_delay(object_w_nans, delay=33, order=45):
+def compute_nan_indices_delay(object_w_nans, delay, order=45):
     """
     Compute indices affected by NaN propagation through delay and interpolation.
 
@@ -142,7 +140,7 @@ def compute_nan_indices_delay(object_w_nans, delay=33, order=45):
 
     return new_mask_like_array
 
-def mask_eta(mask_telemetry, delay=33, order=45):
+def mask_eta(mask_telemetry, delay, order):
     """
     Generate a mask for eta variables given a telemetry mask.
 
@@ -154,13 +152,12 @@ def mask_eta(mask_telemetry, delay=33, order=45):
     Returns:
         np.ndarray: Eta mask (with NaNs).
     """
-    delay = 8.33333 / 0.25
     new_mask_like_array_eta = compute_nan_indices_delay(
         mask_telemetry, delay=int(np.floor(delay)), order=order
     )
     return new_mask_like_array_eta
 
-def mask_TDI_X(mask_telemetry, order=45, generation=2):
+def mask_TDI_X(mask_telemetry, delay, order=45, generation=2):
     """
     Generate a mask for TDI X variables (generation 1 or 2) given a telemetry mask.
 
@@ -172,7 +169,6 @@ def mask_TDI_X(mask_telemetry, order=45, generation=2):
     Returns:
         np.ndarray: TDI X mask (with NaNs).
     """
-    delay = 8.33333 / 0.25
     new_mask_like_array_eta = compute_nan_indices_delay(
         mask_telemetry, delay=int(np.floor(delay)), order=order
     )
@@ -180,13 +176,13 @@ def mask_TDI_X(mask_telemetry, order=45, generation=2):
         new_mask_like_array_eta, delay=int(np.floor(delay)), order=order
     )
     new_mask_like_array_r12 = compute_nan_indices_delay(
-        new_mask_like_array_a12, delay=int(np.floor(2 * delay)), order=order
+        new_mask_like_array_a12, delay=int(np.floor(2*delay)), order=order
     )
 
     if generation == 1:
         return new_mask_like_array_r12
     else:
         new_mask_like_array_q21 = compute_nan_indices_delay(
-            new_mask_like_array_r12, delay=int(np.floor(4 * delay)), order=45
+            new_mask_like_array_r12, delay=int(np.floor(4*delay)), order=order
         )
         return new_mask_like_array_q21
