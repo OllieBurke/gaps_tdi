@@ -1,6 +1,6 @@
 import numpy as np
 
-def gap_augmentation_expression(lagrange_order, N_nans, delay, delay_number=1.0):
+def gap_augmentation_expression(lagrange_order, N_nans, delay, delay_number=1):
     """
     Compute the gap augmentation from telemetry to eta variables.
 
@@ -60,7 +60,7 @@ def widening_gap_X1(lagrange_order, N_nans, delay):
     """
     return _cascade_widening(lagrange_order, N_nans, delay, [1, 1, 2])
 
-def widening_gap_X2(lagrange_order, N_nans, delay):
+def widening_gap_X2(order, N_nans, delay):
     """
     Compute gap augmentation from X1 to X2 variables (fully factorized).
 
@@ -72,8 +72,8 @@ def widening_gap_X2(lagrange_order, N_nans, delay):
     Returns:
         tuple: (extra_widening, total_nans)
     """
-    _, total_nans_X1 = widening_gap_X1(lagrange_order, N_nans, delay)
-    return gap_augmentation_expression(lagrange_order, total_nans_X1, delay, delay_number=4.0)
+    _, total_nans_X1 = widening_gap_X1(order, N_nans, delay)
+    return gap_augmentation_expression(order, total_nans_X1, delay, delay_number=4.0)
 
 def widening_gap_X1_unfactorized(lagrange_order, N_nans, delay):
     """
