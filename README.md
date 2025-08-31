@@ -51,7 +51,7 @@ The project relies on several key libraries:
 - **lisaconstants**: Constants and parameters specific to the LISA mission
 - **lisainstrument**: LISA telemetry data generation 
 - **pytdi**: Time-Delay Interferometry calculations and factorized TDI expressions
-- **lisa_gap**: Gap mask generation and analysis tools
+- **lisagap**: Gap mask generation and analysis tools.
 
 ## Usage
 
@@ -59,7 +59,7 @@ The project relies on several key libraries:
 conda create -n gap_tdi_env python=3.12
 pip install -r requirements.txt
 pip install lisainstrument pytdi lisaconstants lisaorbits
-pip install --extra-index-url https://test.pypi.org/simple/ lisa-gap==0.3.3
+pip install --extra-index-url https://test.pypi.org/simple/ lisa-gap==0.3.4
 ```
 
 ### Main Analysis Notebooks
@@ -180,6 +180,28 @@ The project is organized as a research codebase with Jupyter notebooks for inter
 ## License
 
 This project is part of LISA gravitational wave detection research and follows standard academic research practices.
+
+
+## Citations
+
+If you use any parts of this code, please cite 
+
+```bibtex
+    @unpublished{Burke:2025:TDI-Gaps,
+    author       = {Burke, Ollie and Muratore, Martina and Woan, Graham},
+    title        = {The impact of missing data on the construction of LISA Time Delay Interferometry Michelson variables},
+    note         = {In preparation and to be submitted to \textit{Phys.\ Rev.\ D}},
+    year         = {2025},
+    month        = sep,
+    }
+
+    @software{lisagap,
+    author = {Burke, Ollie and Castelli, Eleonora},
+    title = {lisa-gap: A tool for simulating data gaps in LISA time series},
+    url = {https://github.com/ollieburke/lisa-gap},
+    version = {0.3.3},
+    year = {2025}
+    }
 
 ---
 
