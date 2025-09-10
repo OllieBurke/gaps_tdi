@@ -1,6 +1,13 @@
 # gaps_tdi
 
-**Repository for analyzing data gap propagation and widening effects due to Time-Delay Interferometry (TDI) computations**
+**Repository for analyzing data gap propagation and widening effects due to Time-D4. **Verify installation**:
+   ```bash
+   # After activating the virtual environment
+   python -c "import lisagap; print('lisagap imported successfully')"
+   
+   # Note: Use the activated environment directly, not 'uv run'
+   # 'uv run' may have SSL issues with Test PyPI dependencies
+   ``` Interferometry (TDI) computations**
 
 ## Overview
 
@@ -53,14 +60,92 @@ The project relies on several key libraries:
 - **pytdi**: Time-Delay Interferometry calculations and factorized TDI expressions
 - **lisa_gap**: Gap mask generation and analysis tools
 
-## Usage
+## Installation
 
+This project can be installed using either **uv** (recommended) or **pip** as a fallback.
+
+### Requirements
+- Python ≥ 3.12
+- Git
+
+### Option 1: Using uv (Recommended)
+
+**uv** is a fast Python package manager that provides better dependency resolution and faster installations.
+
+1. **Install uv** (if not already installed):
+   ```bash
+   # macOS/Linux
+   curl -LsSf https://astral.sh/uv/install.sh | sh
+   
+   # Or via pip
+   pip install uv
+   ```
+
+2. **Clone the repository**:
+   ```bash
+   git clone https://github.com/OllieBurke/gaps_tdi.git
+   cd gaps_tdi
+   ```
+
+3. **Install the project with dependencies**:
+   ```bash
+   # Create virtual environment and install dependencies
+   # Note: SSL certificate workaround needed for Test PyPI
+   UV_TRUSTED_HOST=test.pypi.org,test-files.pythonhosted.org uv sync --index-strategy unsafe-best-match 
+   
+   # Activate the virtual environment
+   source .venv/bin/activate  # macOS/Linux
+   # or
+   .venv\Scripts\activate     # Windows
+   ```
+
+4. **Verify installation**:
+   ```bash
+   python -c "import lisagap; print('lisagap installed successfully')"
+   ```
+
+### Option 2: Using pip (Fallback)
+
+If you encounter issues with uv or prefer using pip:
+
+1. **Create a virtual environment**:
+   ```bash
+   # Using conda (recommended)
+   conda create -n gaps_tdi python=3.12
+   conda activate gaps_tdi
+   
+   # Or using venv
+   python -m venv gaps_tdi_env
+   source gaps_tdi_env/bin/activate  # macOS/Linux
+   ```
+
+2. **Install dependencies**:
+   ```bash
+   # Install main dependencies
+   pip install --trusted-host pypi.org --trusted-host files.pythonhosted.org \
+       numpy matplotlib scipy h5py pyyaml tqdm jupyter ipykernel pytdi lisainstrument
+   
+   # Install lisa-gap from Test PyPI
+   pip install --trusted-host test.pypi.org --trusted-host test-files.pythonhosted.org \
+       --extra-index-url https://test.pypi.org/simple/ lisa-gap==0.3.5
+   ```
+
+3. **Install project in development mode**:
+   ```bash
+   pip install -e .
+   ```
+
+
+**For pip:**
 ```bash
-conda create -n gap_tdi_env python=3.12
-pip install -r requirements.txt
-pip install lisainstrument pytdi lisaconstants lisaorbits
-pip install --extra-index-url https://test.pypi.org/simple/ lisa-gap==0.3.3
+pip install --trusted-host test.pypi.org --trusted-host test-files.pythonhosted.org \
+    --extra-index-url https://test.pypi.org/simple/ lisa-gap==0.3.5
 ```
+
+### Import Issues
+
+- Use `import lisagap` (not `import lisa_gap`) for version 0.3.5+
+- If you see version mismatches, ensure you're using the virtual environment: `which python`
 
 ### Main Analysis Notebooks
 
