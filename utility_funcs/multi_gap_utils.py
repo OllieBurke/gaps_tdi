@@ -6,6 +6,7 @@ from gap_widening_utils import (
     widening_gap_X2,
 )
 
+
 def merge_intervals(intervals):
     """
     Merge overlapping or adjacent intervals.
@@ -31,6 +32,7 @@ def merge_intervals(intervals):
             merged.append(current)
     return merged
 
+
 def nans_blocks_function(object_w_nans):
     """
     Identify contiguous blocks of NaNs in an array.
@@ -46,7 +48,10 @@ def nans_blocks_function(object_w_nans):
         return np.array([], dtype=int)
     return np.split(nan_indices, np.where(np.diff(nan_indices) > 1)[0] + 1)
 
-def approx_total_nans_from_nan_blocks_eta(object_w_nans, delay, lagrange_order=45, delay_number=1.0):
+
+def approx_total_nans_from_nan_blocks_eta(
+    object_w_nans, delay, lagrange_order=45, delay_number=1.0
+):
     """
     Approximate the total number of NaNs in eta variables after gap widening.
 
@@ -69,6 +74,7 @@ def approx_total_nans_from_nan_blocks_eta(object_w_nans, delay, lagrange_order=4
         total_nans += total_nans_block
 
     return total_nans
+
 
 def approx_total_nans_from_nan_blocks_X(object_w_nans, delay, order=45, generation=2):
     """
@@ -94,6 +100,7 @@ def approx_total_nans_from_nan_blocks_X(object_w_nans, delay, order=45, generati
         total_nans += total_nans_block
 
     return int(total_nans)
+
 
 def compute_nan_indices_delay(object_w_nans, delay, order=45):
     """
@@ -129,16 +136,19 @@ def compute_nan_indices_delay(object_w_nans, delay, order=45):
 
     merged_intervals = merge_intervals(affected_intervals)
 
-    affected_indices = np.concatenate([
-        np.arange(start, end + 1) for start, end in merged_intervals
-    ])
-    affected_indices = affected_indices[(affected_indices >= 0) & (affected_indices < N_original_series)]
+    affected_indices = np.concatenate(
+        [np.arange(start, end + 1) for start, end in merged_intervals]
+    )
+    affected_indices = affected_indices[
+        (affected_indices >= 0) & (affected_indices < N_original_series)
+    ]
     affected_indices = np.unique(affected_indices)
 
     new_mask_like_array = np.ones_like(object_w_nans, dtype=float)
     new_mask_like_array[affected_indices] = np.nan
 
     return new_mask_like_array
+
 
 def mask_eta(mask_telemetry, delay, order):
     """
@@ -156,6 +166,7 @@ def mask_eta(mask_telemetry, delay, order):
         mask_telemetry, delay=int(np.floor(delay)), order=order
     )
     return new_mask_like_array_eta
+
 
 def mask_TDI_X(mask_telemetry, delay, order=45, generation=2):
     """
@@ -176,13 +187,13 @@ def mask_TDI_X(mask_telemetry, delay, order=45, generation=2):
         new_mask_like_array_eta, delay=int(np.floor(delay)), order=order
     )
     new_mask_like_array_r12 = compute_nan_indices_delay(
-        new_mask_like_array_a12, delay=int(np.floor(2*delay)), order=order
+        new_mask_like_array_a12, delay=int(np.floor(2 * delay)), order=order
     )
 
     if generation == 1:
         return new_mask_like_array_r12
     else:
         new_mask_like_array_q21 = compute_nan_indices_delay(
-            new_mask_like_array_r12, delay=int(np.floor(4*delay)), order=order
+            new_mask_like_array_r12, delay=int(np.floor(4 * delay)), order=order
         )
         return new_mask_like_array_q21

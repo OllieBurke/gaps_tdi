@@ -1,5 +1,6 @@
 import numpy as np
 
+
 def gap_augmentation_expression(lagrange_order, N_nans, delay, delay_number=1):
     """
     Compute the gap augmentation from telemetry to eta variables.
@@ -28,6 +29,7 @@ def gap_augmentation_expression(lagrange_order, N_nans, delay, delay_number=1):
 
     return int(extra_widening), int(N_nans + extra_widening)
 
+
 def _cascade_widening(lagrange_order, initial_nans, delay, delay_numbers):
     """
     Apply multiple stages of gap widening given a sequence of delay_numbers.
@@ -43,8 +45,13 @@ def _cascade_widening(lagrange_order, initial_nans, delay, delay_numbers):
     """
     nans = initial_nans
     for d_num in delay_numbers[:-1]:
-        _, nans = gap_augmentation_expression(lagrange_order, nans, delay, delay_number=d_num)
-    return gap_augmentation_expression(lagrange_order, nans, delay, delay_number=delay_numbers[-1])
+        _, nans = gap_augmentation_expression(
+            lagrange_order, nans, delay, delay_number=d_num
+        )
+    return gap_augmentation_expression(
+        lagrange_order, nans, delay, delay_number=delay_numbers[-1]
+    )
+
 
 def widening_gap_X1(lagrange_order, N_nans, delay):
     """
@@ -59,6 +66,7 @@ def widening_gap_X1(lagrange_order, N_nans, delay):
         tuple: (extra_widening, total_nans)
     """
     return _cascade_widening(lagrange_order, N_nans, delay, [1, 1, 2])
+
 
 def widening_gap_X2(order, N_nans, delay):
     """
@@ -75,6 +83,7 @@ def widening_gap_X2(order, N_nans, delay):
     _, total_nans_X1 = widening_gap_X1(order, N_nans, delay)
     return gap_augmentation_expression(order, total_nans_X1, delay, delay_number=4.0)
 
+
 def widening_gap_X1_unfactorized(lagrange_order, N_nans, delay):
     """
     Compute gap augmentation from eta to X1 variables (unfactorized).
@@ -89,6 +98,7 @@ def widening_gap_X1_unfactorized(lagrange_order, N_nans, delay):
     """
     return _cascade_widening(lagrange_order, N_nans, delay, [1, 3])
 
+
 def widening_gap_X2_unfactorized(lagrange_order, N_nans, delay):
     """
     Compute gap augmentation from eta to X2 variables (unfactorized).
@@ -102,6 +112,7 @@ def widening_gap_X2_unfactorized(lagrange_order, N_nans, delay):
         tuple: (extra_widening, total_nans)
     """
     return _cascade_widening(lagrange_order, N_nans, delay, [1, 7])
+
 
 def construct_mask_single_gap(N_nans, length=None):
     """
@@ -118,4 +129,3 @@ def construct_mask_single_gap(N_nans, length=None):
     mid_index = int(len(masking_function) / 2)
     masking_function[mid_index : mid_index + N_nans] = np.nan
     return masking_function
-
