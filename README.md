@@ -92,11 +92,6 @@ This project can be installed using either **uv** (recommended) or **pip** as a 
    .venv\Scripts\activate     # Windows
    ```
 
-4. **Verify installation**:
-   ```bash
-   python -c "import lisagap; print('lisagap installed successfully')"
-   ```
-
 ### Option 2: Using pip (Fallback)
 
 If you encounter issues with uv or prefer using pip:
@@ -123,22 +118,11 @@ If you encounter issues with uv or prefer using pip:
        --extra-index-url https://test.pypi.org/simple/ lisa-gap==0.3.5
    ```
 
-3. **Install project in development mode**:
-   ```bash
-   pip install -e .
-   ```
-
-
 **For pip:**
 ```bash
 pip install --trusted-host test.pypi.org --trusted-host test-files.pythonhosted.org \
     --extra-index-url https://test.pypi.org/simple/ lisa-gap==0.3.5
 ```
-
-### Import Issues
-
-- Use `import lisagap` (not `import lisa_gap`) for version 0.3.5+
-- If you see version mismatches, ensure you're using the virtual environment: `which python`
 
 ### Main Analysis Notebooks
 
@@ -150,45 +134,19 @@ pip install --trusted-host test.pypi.org --trusted-host test-files.pythonhosted.
    - Core gap widening investigation for static LISA configurations
    - Includes gap augmentation validation and multi-generation TDI analysis
 
-2. **TDI Time Series Comparison**:
-```bash
-   jupyter notebook notebooks/static_constellation/compare_TDI_timeseries_missing_data.ipynb
-   ```
-   - Spectral analysis of TDI variables with and without gaps
-   - Lomb-Scargle periodogram comparisons
-
-3. **Time-Varying Analysis**:
+2. **Time-Varying Analysis**:
 ```bash
    jupyter notebook notebooks/time_varying_explore/investigation_gap_widening_time_varying_arms.ipynb
    ```
    - Gap analysis for time-varying LISA arm lengths
    - Still under development!
 
-### Utility Functions
-
-Import the core gap analysis functions:
-
-```python
-from utility_funcs.gap_widening_utils import (
-    gap_augmentation_expression,
-    widening_gap_X1,
-    widening_gap_X2
-)
-
-from utility_funcs.multi_gap_utils import (
-    mask_TDI_X,
-    approx_total_nans_from_nan_blocks_X
-)
-```
-
-### Configuration
-
-The simulation parameters are configured in `data_for_simulations/config.yaml`, including:
-- Instrument noise parameters (test mass, laser, optical metrology system)
-- Orbital configuration and sampling rates  
-- TDI processing settings and interpolation orders
-- Time sampling (dt = 0.25s) and simulation duration
-
+2. **LISA-based simulations**
+```bash
+   jupyter notebook notebooks/time_varying_explore/results_full_LISA_dataset.ipynb
+   ```
+   - Computation of duty cycle using realistic LISA-based gap scenarios
+   - Computation of true duty cycle due to TDI pipelines with gaps
 
 ### Gap Augmentation Formula
 
@@ -211,7 +169,7 @@ def gap_augmentation_expression(lagrange_order, N_nans, delay, delay_number=1.0)
     """
 ```
 
-### Multi-Generation TDI Widening
+### Different TDI generation gap augmentation
 
 ```python
 def widening_gap_X1(lagrange_order, N_nans, delay):
@@ -259,6 +217,30 @@ The project is organized as a research codebase with Jupyter notebooks for inter
 
 This project is part of LISA gravitational wave detection research and follows standard academic research practices.
 
+
+## Citation
+If you use any parts of this code, please cite
+
+``` bibtex
+    @unpublished{Burke:2025:TDI-Gaps,
+    author       = {Burke, Ollie and Muratore, Martina and Woan, Graham},
+    title        = {The impact of missing data on the construction of LISA Time Delay Interferometry Michelson variables},
+    note         = {In preparation and to be submitted to \textit{Phys.\ Rev.\ D}},
+    year         = {2025},
+    month        = sep,
+    }
+
+    @software{lisagap,
+    author = {Burke, Ollie and Castelli, Eleonora},
+    title = {lisa-gap: A tool for simulating data gaps in LISA time series},
+    url = {https://github.com/ollieburke/lisa-gap},
+    version = {0.3.3},
+    year = {2025}
+    }
+```
+---
+
+*This project contributes to the understanding of data gap propagation in space-based gravitational wave detectors, specifically focusing on the Time-Delay Interferometry techniques used in the LISA mission.*
 ---
 
 *This project contributes to the understanding of data gap propagation in space-based gravitational wave detectors, specifically focusing on the Time-Delay Interferometry techniques used in the LISA mission.*
