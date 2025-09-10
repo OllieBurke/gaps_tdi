@@ -1,0 +1,30 @@
+[project]
+name = "gaps-tdi"
+version = "0.1.0"
+description = "Project to understand gap augmentation due to TDI computations"
+authors = [
+    {name = "Ollie Burke", email = "ollie.burke@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "h5py>=3.6.0",
+    "ipykernel>=6.0.0",
+    "jupyter>=1.0.0",
+    "matplotlib>=3.5.0",
+    "numpy>=1.21.0",
+    "pytdi<=1.4.0",
+    "scipy>=1.7.0",
+    "tqdm>=4.60.0",
+    "pyyaml>=6.0",
+    "lisainstrument>=1.9.0",
+    "lisa-gap==0.3.5",
+    "lisaorbits>=2.4.2",
+]
+
+[[tool.uv.index]]
+name = "test-pypi"
+url = "https://test.pypi.org/simple/"
+
+[tool.uv.sources]
+lisa-gap = { index = "test-pypi" }
