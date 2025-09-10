@@ -50,7 +50,7 @@ The project relies on several key libraries:
 
 - **lisaconstants**: Constants and parameters specific to the LISA mission
 - **lisainstrument**: LISA telemetry data generation 
-- **pytdi**: Time-Delay Interferometry calculations and factorized TDI expressions
+- **pytdi**: Time-Delay Interferometry calculations and factorized TDI expressions. Note, we use version 2.0.0 for this project.
 - **lisagap**: Gap mask generation and analysis tools
 
 ## Installation
