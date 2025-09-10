@@ -51,7 +51,7 @@ The project relies on several key libraries:
 - **lisaconstants**: Constants and parameters specific to the LISA mission
 - **lisainstrument**: LISA telemetry data generation 
 - **pytdi**: Time-Delay Interferometry calculations and factorized TDI expressions
-- **lisa_gap**: Gap mask generation and analysis tools
+- **lisagap**: Gap mask generation and analysis tools
 
 ## Installation
 
@@ -64,6 +64,12 @@ This project can be installed using either **uv** (recommended) or **pip** as a 
 ### Option 1: Using uv (Recommended)
 
 **uv** is a fast Python package manager that provides better dependency resolution and faster installations.
+
+0. **Remove conda from the picture **
+   If conda is set to default (base) environment, deactivate it:
+   ```bash
+   conda deactivate
+   ```
 
 1. **Install uv** (if not already installed):
    ```bash
@@ -83,8 +89,7 @@ This project can be installed using either **uv** (recommended) or **pip** as a 
 3. **Install the project with dependencies**:
    ```bash
    # Create virtual environment and install dependencies
-   # Note: SSL certificate workaround needed for Test PyPI
-   UV_TRUSTED_HOST=test.pypi.org,test-files.pythonhosted.org uv sync --index-strategy unsafe-best-match 
+   uv sync --index-strategy unsafe-best-match 
    
    # Activate the virtual environment
    source .venv/bin/activate  # macOS/Linux
@@ -97,14 +102,14 @@ This project can be installed using either **uv** (recommended) or **pip** as a 
 If you encounter issues with uv or prefer using pip:
 
 1. **Create a virtual environment**:
-   ```bash
-   # Using conda (recommended)
-   conda create -n gaps_tdi python=3.12
-   conda activate gaps_tdi
-   
-   # Or using venv
+   ```bash 
+   # Using venv (recommended)
    python -m venv gaps_tdi_env
    source gaps_tdi_env/bin/activate  # macOS/Linux
+   
+   # Using conda (not recommended)
+   conda create -n gaps_tdi_env python=3.12
+   conda activate gaps_tdi_env
    ```
 
 2. **Install dependencies**:
@@ -117,12 +122,6 @@ If you encounter issues with uv or prefer using pip:
    pip install --trusted-host test.pypi.org --trusted-host test-files.pythonhosted.org \
        --extra-index-url https://test.pypi.org/simple/ lisa-gap==0.3.5
    ```
-
-**For pip:**
-```bash
-pip install --trusted-host test.pypi.org --trusted-host test-files.pythonhosted.org \
-    --extra-index-url https://test.pypi.org/simple/ lisa-gap==0.3.5
-```
 
 ### Main Analysis Notebooks
 
@@ -238,9 +237,5 @@ If you use any parts of this code, please cite
     year = {2025}
     }
 ```
----
-
-*This project contributes to the understanding of data gap propagation in space-based gravitational wave detectors, specifically focusing on the Time-Delay Interferometry techniques used in the LISA mission.*
----
 
 *This project contributes to the understanding of data gap propagation in space-based gravitational wave detectors, specifically focusing on the Time-Delay Interferometry techniques used in the LISA mission.*
