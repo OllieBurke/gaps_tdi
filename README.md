@@ -1,6 +1,6 @@
 # gaps_tdi
 
-**Repository for analyzing data gap propagation and widening effects due to Time-D4. 
+**Repository for analyzing data gap propagation and widening effects due to Time Delay Interferometry**.
 
 ## Overview
 
@@ -63,9 +63,9 @@ This project can be installed using either **uv** (recommended) or **pip** as a 
 
 ### Option 1: Using uv (Recommended)
 
-**uv** is a fast Python package manager that provides better dependency resolution and faster installations.
+**uv** is a fast Python package manager that provides excellent dependency resolution and faster installations.
 
-0. **Remove conda from the picture **
+0. **Remove conda from the picture**
    If conda is set to default (base) environment, deactivate it:
    ```bash
    conda deactivate
@@ -116,8 +116,8 @@ If you encounter issues with uv or prefer using pip:
    ```bash
    # Install main dependencies
    pip install --trusted-host pypi.org --trusted-host files.pythonhosted.org \
-       numpy matplotlib scipy h5py pyyaml tqdm jupyter ipykernel pytdi==1.4.0 lisainstrument lisaorbits
-   
+       numpy matplotlib scipy h5py pyyaml tqdm jupyter ipykernel pytdi==2.0.0 lisainstrument lisaorbits
+
    # Install lisa-gap from Test PyPI
    pip install --trusted-host test.pypi.org --trusted-host test-files.pythonhosted.org \
        --extra-index-url https://test.pypi.org/simple/ lisa-gap==0.3.5
@@ -233,7 +233,7 @@ If you use any parts of this code, please cite
     author = {Burke, Ollie and Castelli, Eleonora},
     title = {lisa-gap: A tool for simulating data gaps in LISA time series},
     url = {https://github.com/ollieburke/lisa-gap},
-    version = {0.3.3},
+    version = {0.3.5},
     year = {2025}
     }
 ```
