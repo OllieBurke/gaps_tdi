@@ -1,13 +1,6 @@
 # gaps_tdi
 
-**Repository for analyzing data gap propagation and widening effects due to Time-D4. **Verify installation**:
-   ```bash
-   # After activating the virtual environment
-   python -c "import lisagap; print('lisagap imported successfully')"
-   
-   # Note: Use the activated environment directly, not 'uv run'
-   # 'uv run' may have SSL issues with Test PyPI dependencies
-   ``` Interferometry (TDI) computations**
+**Repository for analyzing data gap propagation and widening effects due to Time-D4. 
 
 ## Overview
 
@@ -123,7 +116,7 @@ If you encounter issues with uv or prefer using pip:
    ```bash
    # Install main dependencies
    pip install --trusted-host pypi.org --trusted-host files.pythonhosted.org \
-       numpy matplotlib scipy h5py pyyaml tqdm jupyter ipykernel pytdi lisainstrument
+       numpy matplotlib scipy h5py pyyaml tqdm jupyter ipykernel pytdi==1.4.0 lisainstrument lisaorbits
    
    # Install lisa-gap from Test PyPI
    pip install --trusted-host test.pypi.org --trusted-host test-files.pythonhosted.org \
