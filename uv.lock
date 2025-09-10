@@ -521,7 +521,7 @@ requires-dist = [
     { name = "lisaorbits", specifier = ">=2.4.2" },
     { name = "matplotlib", specifier = ">=3.5.0" },
     { name = "numpy", specifier = ">=1.21.0" },
-    { name = "pytdi", specifier = "<=1.4.0" },
+    { name = "pytdi", specifier = "==1.4.0" },
     { name = "pyyaml", specifier = ">=6.0" },
     { name = "scipy", specifier = ">=1.7.0" },
     { name = "tqdm", specifier = ">=4.60.0" },
