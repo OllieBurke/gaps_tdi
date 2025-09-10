@@ -521,7 +521,7 @@ requires-dist = [
     { name = "lisaorbits", specifier = ">=2.4.2" },
     { name = "matplotlib", specifier = ">=3.5.0" },
     { name = "numpy", specifier = ">=1.21.0" },
-    { name = "pytdi", specifier = "==1.4.0" },
+    { name = "pytdi", specifier = "==2.0.0" },
     { name = "pyyaml", specifier = ">=6.0" },
     { name = "scipy", specifier = ">=1.7.0" },
     { name = "tqdm", specifier = ">=4.60.0" },
@@ -1689,16 +1689,16 @@ wheels = [
 
 [[package]]
 name = "pytdi"
-version = "1.4.0"
+version = "2.0.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "h5py" },
     { name = "numpy" },
     { name = "scipy" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/0f/04/b5a70b04a680e47f0f9d29fd19d0b6f4b34c728d86ed39ac74557a2b430f/pytdi-1.4.0.tar.gz", hash = "sha256:f636cc09215a54d8dbec1cae66ffb7c54bad0556d067c351d08992c9dfa457d2", size = 437116, upload-time = "2025-09-04T22:07:06.447Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/42/be/907ce2ee9df4900287a26e8467479396346bd85c1b1d8fb26d95eea5825b/pytdi-2.0.0.tar.gz", hash = "sha256:5b819ce13966c99af93acfbcc970b483af0aa4a0e5ac6292603da94e9e440246", size = 437323, upload-time = "2025-09-05T11:59:57.011Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/0e/48/16a023eb9e541a653e97e5a0de149089565be09d7c0725cd263a217276b8/pytdi-1.4.0-py3-none-any.whl", hash = "sha256:9ded2ebfa70e940b5d2f7f41a4085392e50eff913a7dbce12a9c08a3069d2bcc", size = 35290, upload-time = "2025-09-04T22:07:04.684Z" },
+    { url = "https://files.pythonhosted.org/packages/99/92/7cf9ae0109f9b689f4118468770c608306a2d9c04610679be3ad529f1336/pytdi-2.0.0-py3-none-any.whl", hash = "sha256:e2e12f84ec1515b05a1344e5048d8c185b950584266fe792bc64c2734aeefdc7", size = 35487, upload-time = "2025-09-05T11:59:55.566Z" },
 ]
 
 [[package]]
