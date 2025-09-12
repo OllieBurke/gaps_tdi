@@ -11,12 +11,6 @@ This project investigates how data gaps in onboard LISA (Laser Interferometer Sp
 ```
 gaps_tdi/
 ├── README.md                           # Project documentation
-├── data_for_simulations/               # Simulation data and configuration
-│   ├── config.yaml                     # LISA instrument configuration
-│   ├── groundtrack.h5                  # Ground tracking data
-│   ├── gw.h5                           # Gravitational wave data
-│   ├── instru.h5                       # Instrument telemetry data
-│   └── orbits.h5                       # Orbital trajectory data
 ├── utility_funcs/                      # Core utility functions
 │   ├── gap_widening_utils.py           # Gap augmentation calculations
 │   └── multi_gap_utils.py              # Multi-gap analysis tools
@@ -24,7 +18,7 @@ gaps_tdi/
 │   ├── static_constellation/           # Static LISA configuration analysis
 │   │   ├── investigation_gap_widening_static.ipynb    # Main gap analysis
 │   │   ├── compare_TDI_timeseries_missing_data.ipynb  # TDI comparison tools
-│   │   └── *.h5                        # Static simulation datasets
+│   │   └── *.h5                        # Static simulation datasets that will be generated
 │   ├── time_varying_explore/           # Time-varying arm analysis
 │   │   └── investigation_gap_widening_time_varying_arms.ipynb
 │   ├── full_LISA_simulations/          # Full-scale LISA simulations
