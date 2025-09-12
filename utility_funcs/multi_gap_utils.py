@@ -142,9 +142,14 @@ def compute_nan_indices_delay(object_w_nans, delay, order=45):
     affected_indices = affected_indices[
         (affected_indices >= 0) & (affected_indices < N_original_series)
     ]
+
+    # Merge the gaps if we need
     affected_indices = np.unique(affected_indices)
 
+    # Create a vector of ones
     new_mask_like_array = np.ones_like(object_w_nans, dtype=float)
+
+    # Force the indices representing nans to actually be nans
     new_mask_like_array[affected_indices] = np.nan
 
     return new_mask_like_array
