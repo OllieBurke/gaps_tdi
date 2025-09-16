@@ -53,6 +53,7 @@ This project can be installed using either **uv** (recommended) or **pip** as a 
 
 ### Requirements
 - Python ≥ 3.12
+- git-lfs (for cloning large files) -- install via brew, sudo, apt, etc.
 - Git
 
 ### Option 1: Using uv (Recommended)
@@ -83,7 +84,7 @@ This project can be installed using either **uv** (recommended) or **pip** as a 
 3. **Install the project with dependencies**:
    ```bash
    # Create virtual environment and install dependencies
-   uv sync --index-strategy unsafe-best-match 
+   GIT_LFS_SKIP_SMUDGE=1 && uv sync
    
    # Activate the virtual environment
    source .venv/bin/activate  # macOS/Linux
@@ -223,13 +224,20 @@ If you use any parts of this code, please cite
     month        = sep,
     }
 
-    @software{lisagap,
-    author = {Burke, Ollie and Castelli, Eleonora},
-    title = {lisa-gap: A tool for simulating data gaps in LISA time series},
-    url = {https://github.com/ollieburke/lisa-gap},
-    version = {0.3.5},
-    year = {2025}
-    }
+   @software{bayle_2022_6452904,
+
+   author       = {Bayle, Jean-Baptiste and
+                     Burke, Ollie and
+                     Castelli, Eleonora and
+                     Korsakova, Natalia},
+   title        = {LISA Glitch},
+   month        = apr,
+   year         = 2022,
+   publisher    = {Zenodo},
+   version      = {1.5.0},
+   doi          = {10.5281/zenodo.6452904},
+   url          = {https://doi.org/10.5281/zenodo.6452904},
+   }
 ```
 
 *This project contributes to the understanding of data gap propagation in space-based gravitational wave detectors, specifically focusing on the Time-Delay Interferometry techniques used in the LISA mission.*
