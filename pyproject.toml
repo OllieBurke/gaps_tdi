@@ -18,13 +18,9 @@ dependencies = [
     "tqdm>=4.60.0",
     "pyyaml>=6.0",
     "lisainstrument>=1.9.0",
-    "lisa-gap==0.3.5",
     "lisaorbits>=2.4.2",
+    "lisaglitch",
 ]
 
-[[tool.uv.index]]
-name = "test-pypi"
-url = "https://test.pypi.org/simple/"
-
 [tool.uv.sources]
-lisa-gap = { index = "test-pypi" }
+lisaglitch = { git = "https://gitlab.in2p3.fr/lisa-simulation/glitch.git", branch = "69-incorporate-gaps" }
