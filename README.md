@@ -84,7 +84,7 @@ This project can be installed using either **uv** (recommended) or **pip** as a 
 3. **Install the project with dependencies**:
    ```bash
    # Create virtual environment and install dependencies
-   GIT_LFS_SKIP_SMUDGE=1 && uv sync
+   GIT_LFS_SKIP_SMUDGE=1 uv sync
    
    # Activate the virtual environment
    source .venv/bin/activate  # macOS/Linux
