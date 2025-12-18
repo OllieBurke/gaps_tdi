@@ -216,13 +216,15 @@ This project is part of LISA gravitational wave detection research and follows s
 If you use any parts of this code, please cite
 
 ``` bibtex
-    @unpublished{Burke:2025:TDI-Gaps,
-    author       = {Burke, Ollie and Muratore, Martina and Woan, Graham},
-    title        = {The impact of missing data on the construction of LISA Time Delay Interferometry Michelson variables},
-    note         = {In preparation and to be submitted to \textit{Phys.\ Rev.\ D}},
-    year         = {2025},
-    month        = sep,
-    }
+   @misc{burke2025impactmissingdataconstruction,
+      title={The impact of missing data on the construction of LISA Time Delay Interferometry Michelson variables}, 
+      author={Ollie Burke and Martina Muratore and Graham Woan},
+      year={2025},
+      eprint={2510.06406},
+      archivePrefix={arXiv},
+      primaryClass={gr-qc},
+      url={https://arxiv.org/abs/2510.06406}, 
+}
 
    @software{bayle_2022_6452904,
 
